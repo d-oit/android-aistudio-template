@@ -15,7 +15,7 @@ plugins {
 // Uses Gradle dependency constraints (recognized by Dependabot).
 // ---------------------------------------------------------------------------
 subprojects {
-    pluginManager.withPlugin("com.android.application") {
+    afterEvaluate {
         dependencies {
             constraints {
             // Netty — HTTP/2 DoS, request smuggling, hostname verification bypass
