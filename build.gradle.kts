@@ -41,7 +41,7 @@ allprojects {
             force("commons-io:commons-io:2.14.0")
 
             // Apache HttpClient — XSS
-            force("org.apache.httpcomponents:httpclient:4.5.13")
+            force("org.apache.httpcomponents:httpclient:4.5.14")
 
             // jose4j — DoS via compressed JWE
             force("org.bitbucket.b_c:jose4j:0.9.6")
