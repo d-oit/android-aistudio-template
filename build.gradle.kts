@@ -14,7 +14,7 @@ plugins {
 // These do NOT ship in the APK (build-time only) except where noted.
 // Uses Gradle dependency constraints (recognized by Dependabot).
 // ---------------------------------------------------------------------------
-allprojects {
+subprojects {
     dependencies {
         constraints {
             // Netty — HTTP/2 DoS, request smuggling, hostname verification bypass
