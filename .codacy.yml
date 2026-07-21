@@ -1,0 +1,10 @@
+---
+engines:
+  detekt:
+    enabled: true
+  androidlint:
+    enabled: true
+exclude_paths:
+  - "**/build/**"
+  - "**/generated/**"
+  - "**/*.xml"
