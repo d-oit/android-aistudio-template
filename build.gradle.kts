@@ -29,7 +29,7 @@ allprojects {
 
             // BouncyCastle — GOST keystream reuse, LDAP injection, broken crypto
             force("org.bouncycastle:bcprov-jdk18on:1.81.1")
-            force("org.bouncycastle:bcpkix-jdk18on:1.84")
+            force("org.bouncycastle:bcpkix-jdk18on:1.85")
 
             // Okio — signed-to-unsigned conversion (affects runtime APK via OkHttp)
             force("com.squareup.okio:okio:3.4.0")
