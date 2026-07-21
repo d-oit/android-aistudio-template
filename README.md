@@ -11,7 +11,6 @@ A generic, production-ready Android project template for [aistudio.google.com](h
 - **Robolectric + Roborazzi** for fast JVM-only testing (no emulator required)
 - **GitHub Actions** CI/CD — lint, test, build, signed release
 - **`./harness.sh`** developer workflow script
-- **`.agents/skills/`** — full set of AI Studio agent skills ported from [d-oit/do-github-gist-ai-studio-android](https://github.com/d-oit/do-github-gist-ai-studio-android)
 
 ## Quick Start
 
@@ -49,7 +48,7 @@ Copy the following into your project:
 
 ## GitHub Authentication
 
-This template uses **`GH_TOKEN`** (not `GITHUB_PAT`) for all `gh` CLI operations.
+This template uses **`GH_TOKEN`** for all `gh` CLI operations.
 Add `GH_TOKEN` as a GitHub Actions secret and export it locally in your shell.
 
 ```bash
@@ -63,7 +62,7 @@ See `.agents/skills/gh/SKILL.md` for full `gh` CLI usage patterns.
 | Secret | Required | Purpose |
 |---|---|---|
 | `GH_TOKEN` | Optional | `gh` CLI GitHub operations |
-| `CODACY_PROJECT_TOKEN` | Optional | Coverage reporting |
+| `CODACY_PROJECT_TOKEN` | Optional | Code Quality / Quality Gate (free for open source / public codebase) |
 | `KEYSTORE_FILE` | Release only | Signed APK builds |
 | `KEYSTORE_PASSWORD` | Release only | Keystore password |
 | `KEY_ALIAS` | Release only | Key alias |
@@ -74,33 +73,6 @@ See `.agents/skills/gh/SKILL.md` for full `gh` CLI usage patterns.
 ```
 UI (Compose) → ViewModel (StateFlow) → Repository → [Room | Retrofit | RemoteDataSource]
 ```
-
-## Agent Skills
-
-All agent skills from `.agents/skills/` are available for AI Studio:
-
-| Skill | Purpose |
-|---|---|
-| `gh` | GitHub CLI patterns for agents |
-| `android-cli` | Android CLI tooling |
-| `adaptive` | Adaptive layouts |
-| `agp-9-upgrade` | AGP 9 migration |
-| `android-intent-security` | Intent security best practices |
-| `appfunctions` | App Functions integration |
-| `camerax` | CameraX usage |
-| `edge-to-edge` | Edge-to-edge display |
-| `engage-sdk-integration` | Engage SDK |
-| `migrate-xml-views-to-jetpack-compose` | XML → Compose migration |
-| `navigation-3` | Navigation 3 |
-| `perfetto-sql` | Perfetto SQL tracing |
-| `perfetto-trace-analysis` | Trace analysis |
-| `play-billing-library-version-upgrade` | Billing library upgrade |
-| `play-policy-insights` | Play policy |
-| `r8-analyzer` | R8 shrinking/analysis |
-| `styles` | Styling guidelines |
-| `testing-setup` | Test infrastructure |
-| `verified-email` | Verified email flows |
-| `wear-compose-m3` | Wear OS Compose M3 |
 
 ## License
 
