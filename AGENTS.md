@@ -31,7 +31,7 @@ Before executing any structural modifications, feature updates, or database sche
 6. **Compose-first UI**: Do not add XML layouts; use Jetpack Compose exclusively.
 7. **Room for persistence**: All local state goes through Room DAOs.
 8. **WorkManager for background**: All sync operations use WorkManager workers.
-9. **GH_TOKEN only**: For all GitHub CLI (`gh`) operations use `GH_TOKEN` — never `GITHUB_PAT`.
+9. **GH_TOKEN only**: For all GitHub CLI (`gh`) operations use `GH_TOKEN`.
 
 ---
 
@@ -102,8 +102,6 @@ Before declaring any change completed, execute:
 | GH_TOKEN | Shell env / GitHub Actions secret — used by `gh` CLI |
 | CODACY_PROJECT_TOKEN | Shell env / GitHub Actions secret |
 | Keystore | `keystore/` dir (gitignored) → GitHub Actions secret (base64) |
-
-> **Note**: `GH_TOKEN` replaces `GITHUB_PAT`. The `gh` CLI authenticates via the `GH_TOKEN` environment variable. Do not use `GITHUB_PAT` anywhere in this codebase.
 
 ---
 
