@@ -1,6 +1,6 @@
 # Android AI Studio Template
 
-A generic, production-ready Android project template for [aistudio.google.com](https://aistudio.google.com). Use it as a starting point for any new Android project or as a reference for an existing codebase — no Gemini AI integration bundled by default.
+A generic, production-ready Android project template for [aistudio.google.com](https://aistudio.google.com/). Use it as a starting point for any new Android project or as a reference for an existing codebase — no Gemini AI integration bundled by default.
 
 ## Features
 
@@ -11,56 +11,70 @@ A generic, production-ready Android project template for [aistudio.google.com](h
 - **Robolectric + Roborazzi** for fast JVM-only testing (no emulator required)
 - **GitHub Actions** CI/CD — lint, test, build, signed release
 - **`./harness.sh`** developer workflow script
-- **[android/skills](https://github.com/android/skills)** (optional) — curated Android agent skills for AI Studio
+- **GitHub agent skills** for project-local AI workflows
 
 ## Quick Start
 
 ### Use as a GitHub Template
 
-1. Click **"Use this template"** on GitHub.
+1. Click **Use this template** on GitHub.
 2. Clone your new repo.
-3. Copy `.env.example` to `.env` and fill in `GH_TOKEN` (if needed for `gh` CLI).
+3. Copy `.env.example` to `.env` and fill in `GH_TOKEN` if needed for `gh` CLI usage.
 4. Run `chmod +x harness.sh && ./harness.sh build`.
-5. *(Optional)* Install Android agent skills — see [Agent Skills](#agent-skills) below.
+5. Optionally install or update project-local agent skills as described below.
 
 ### Reference in an Existing Project
 
 Copy the following into your project:
-- `.agents/` — agent skills for AI Studio
+
+- `.agents/` — local agent skills and agent configuration
 - `AGENTS.md` — agent instructions
 - `harness.sh` — developer workflow harness
 - `.github/workflows/` — CI/CD pipelines
 
 ## Agent Skills
 
-This template supports the [GitHub Skills](https://cli.github.com/manual/gh_skill_install) system for AI coding agents.
+This template is designed for **project-local** agent skills managed with the GitHub CLI.
 
-### Android Skills (Optional)
+### Install local project skills
 
-The [android/skills](https://github.com/android/skills) repository provides curated agent skills for Android development (Compose, Room, architecture patterns, etc.).
-
-Install via the `gh` CLI:
+From the project root, install all skills published by this repository into the current project directory:
 
 ```bash
-# Install all Android skills
-gh skill install android/skills
-
-# Install a specific skill
-gh skill install android/skills <skill-name>
+gh skill install . --dir .
 ```
 
-See the [gh skill install documentation](https://cli.github.com/manual/gh_skill_install) for full usage.
+This makes `gh` scan the current repository for supported skill layouts and install discovered skills into the project-local agent directory.
 
-### Installing Other Skills
+### Update all project skills
 
-Any skill from a public GitHub repository can be installed the same way:
+To update every installed agent skill in the current project, run:
 
 ```bash
-gh skill install <owner>/<repo>
-gh skill install <owner>/<repo> <skill-name>
+gh skill update --dir .
 ```
 
-Installed skills are stored under `.agents/skills/` and are automatically picked up by AI Studio agents.
+Use this after pulling changes to `.agents/`, `AGENTS.md`, or any installed skill sources.
+
+### About `android/skills`
+
+The `android/skills` repository is useful as a reference for Android-focused agent guidance, but it does **not** follow the repository layout that `gh skill install` expects for skill discovery in all cases. If `gh skill install android/skills --allow-hidden-dirs` reports `no skills found`, use this template's local skills instead or manually copy the needed Android skill content into a compatible project-local skill directory.
+
+### Installing other skills
+
+For repositories that follow the standard GitHub Skills publisher layout, use:
+
+```bash
+gh skill install OWNER/REPO --dir .
+```
+
+To install a specific published skill from a compatible repository:
+
+```bash
+gh skill install OWNER/REPO SKILL_NAME --dir .
+```
+
+Installed skills are stored in the project-local agent skill directory and can then be refreshed with `gh skill update --dir .`.
 
 ## Developer Workflow
 
@@ -81,8 +95,7 @@ Installed skills are stored under `.agents/skills/` and are automatically picked
 
 ## GitHub Authentication
 
-This template uses **`GH_TOKEN`** for all `gh` CLI operations.
-Add `GH_TOKEN` as a GitHub Actions secret and export it locally in your shell.
+This template uses **`GH_TOKEN`** for `gh` CLI operations. Add `GH_TOKEN` as a GitHub Actions secret and export it locally in your shell.
 
 ```bash
 export GH_TOKEN=ghp_...
@@ -103,10 +116,8 @@ See `.agents/skills/gh/SKILL.md` for full `gh` CLI usage patterns.
 
 ## Architecture
 
-```
-UI (Compose) → ViewModel (StateFlow) → Repository → [Room | Retrofit | RemoteDataSource]
-```
+`UI (Compose) → ViewModel (StateFlow) → Repository → [Room | Retrofit | RemoteDataSource]`
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/d-oit/android-aistudio-template/blob/main/LICENSE).
