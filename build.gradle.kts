@@ -36,7 +36,7 @@ allprojects {
             force("com.squareup.okio:okio-jvm:3.4.0")
 
             // Apache Commons — uncontrolled recursion, DoS
-            force("org.apache.commons:commons-lang3:3.18.0")
+            force("org.apache.commons:commons-lang3:3.20.0")
             force("org.apache.commons:commons-compress:1.26.0")
             force("commons-io:commons-io:2.14.0")
 
