@@ -203,13 +203,14 @@ abstract class AppDatabase : RoomDatabase() {
 
 ```kotlin
 interface GeminiApiService {
-    @POST("v1beta/models/{model}:generateContent")
+    @POST("models/{model}:generateContent")
     suspend fun generateContent(
         @Path("model") model: String,
         @Query("key") apiKey: String,
         @Body request: GeminiRequest
     ): GeminiResponse
 }
+// Note: v1beta/ is in GeminiConfig.BASE_URL, not in the annotation
 ```
 
 ### 4.3 AI State Machine
@@ -335,14 +336,16 @@ src/test/java/com/example/template/
 ```
 ci.yml (trigger)
   → _build.yml (reusable workflow)
-    → Checkout → JDK 21 → Android SDK → harness.sh verify
+    → Checkout → JDK 21 (Zulu) → Android SDK (setup-android)
+    → Auto-fix: ./harness.sh format (spotlessApply)
+    → Quality Gate: ./harness.sh verify
       → format-check (spotlessCheck)
       → lint (lintDebug)
       → test (testDebugUnitTest)
       → build (assembleDebug)
       → coverage (jacocoTestReportDebug)
     → Upload APK artifact
-    → Upload coverage to Codacy
+    → Upload coverage to Codacy (if token present)
 ```
 
 ### 8.2 Workflows
@@ -420,16 +423,18 @@ Before declaring any change complete:
 
 ### 9.3 Package Structure
 
+> **Note**: Packages below marked with `(planned)` do not exist yet. Only `ai/` and `ui/theme/` are implemented.
+
 ```
 com.example.template/
-  ├── ai/                    # Gemini AI integration
-  ├── data/                  # Repositories, data sources
-  ├── db/                    # Room entities, DAOs, database
-  ├── domain/                # Use cases
-  ├── network/               # Retrofit services
-  ├── sync/                  # WorkManager workers
-  ├── ui/                    # Compose screens + theme
-  │   ├── home/
+  ├── ai/                    # Gemini AI integration ✅
+  ├── data/                  # (planned) Repositories, data sources
+  ├── db/                    # (planned) Room entities, DAOs, database
+  ├── domain/                # (planned) Use cases
+  ├── network/               # (planned) Retrofit services
+  ├── sync/                  # (planned) WorkManager workers
+  ├── ui/                    # Compose screens + theme ✅
+  │   ├── home/              # (planned)
   │   └── theme/
   └── MainActivity.kt
 ```
@@ -461,6 +466,8 @@ com.example.template/
 ### 10.2 Version Catalog
 
 All versions are managed in `gradle/libs.versions.toml`. Never hardcode versions in `build.gradle.kts` files.
+
+> **Note**: The version table above is a snapshot as of `last_updated`. Authoritative versions live in `gradle/libs.versions.toml`. Dependabot PRs may bump versions independently.
 
 ---
 
