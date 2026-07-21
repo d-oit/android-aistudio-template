@@ -6,7 +6,6 @@ Android GitHub Template for Google AI Studio integration. Enables rapid bootstra
 ## AI Studio Integration
 - API: `https://generativelanguage.googleapis.com/v1beta/`
 - Key: `BuildConfig.GEMINI_API_KEY` (injected from `.env` or CI secret)
-- Models: `gemini-2.0-flash` (default), `gemini-2.5-pro` (complex tasks)
 - Docs: https://ai.google.dev/gemini-api/docs
 
 ## Tech Stack Quick Reference
