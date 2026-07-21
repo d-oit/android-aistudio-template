@@ -16,7 +16,8 @@ This file provides guidance for AI coding agents (Gemini in AI Studio, Copilot, 
 ## 1. MANDATORY: Read Specifications & Track Tasks First
 
 Before executing any structural modifications, feature updates, or database schema additions, you **MUST** read and cross-reference the master files:
-- **`/SPEC.md`**: Contains the master design specification, entity relationships, offline-first synchronization state machine flags, and styling guidelines. Read this first to align design and data models.
+- **`/DESIGN.md`**: The machine-readable design specification (YAML frontmatter + structured sections). Contains architecture, data model, ADRs, testing strategy, CI/CD, and coding conventions. **Read this first.**
+- **`/SPEC.md`**: Contains the master design specification, entity relationships, offline-first synchronization state machine flags, and styling guidelines.
 - **`/TASK.md`**: Tracks development progress, completed items, and pending requirements. Keep this file updated as features are implemented or adjusted.
 
 ---

@@ -1,5 +1,7 @@
 # Development Checklist
 
+> **See also**: `DESIGN.md` for comprehensive architecture and coding conventions.
+
 ## Phase 0 — Template Bootstrap ✅
 - [x] Repository structure
 - [x] Gradle version catalog
@@ -9,6 +11,7 @@
 - [x] Dependabot config
 - [x] Detekt + Spotless config
 - [x] `AGENTS.md` for AI coding assistants
+- [x] `DESIGN.md` machine-readable design specification (Stitch format)
 
 ## Phase 1 — Core App Scaffold
 - [ ] `MainActivity` with Compose `NavHost`

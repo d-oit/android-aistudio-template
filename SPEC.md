@@ -1,5 +1,7 @@
 # Architecture Specification
 
+> **Note**: For the comprehensive machine-readable design specification (YAML frontmatter, ADRs, data model, CI/CD, testing, coding conventions), see **`DESIGN.md`**.
+
 ## 1. Overview
 
 This template delivers an **offline-first Android application** with optional **Gemini AI cloud enrichment** via Google AI Studio. The architecture follows the Android recommended app architecture (MVVM + Repository) with explicit offline/online state management.
