@@ -28,7 +28,7 @@ allprojects {
             force("io.netty:netty-resolver:4.1.135.Final")
 
             // BouncyCastle — GOST keystream reuse, LDAP injection, broken crypto
-            force("org.bouncycastle:bcprov-jdk18on:1.81.1")
+            force("org.bouncycastle:bcprov-jdk18on:1.84")
             force("org.bouncycastle:bcpkix-jdk18on:1.84")
 
             // Okio — signed-to-unsigned conversion (affects runtime APK via OkHttp)
