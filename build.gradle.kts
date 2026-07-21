@@ -32,8 +32,8 @@ allprojects {
             force("org.bouncycastle:bcpkix-jdk18on:1.84")
 
             // Okio — signed-to-unsigned conversion (affects runtime APK via OkHttp)
-            force("com.squareup.okio:okio:3.4.0")
-            force("com.squareup.okio:okio-jvm:3.4.0")
+            force("com.squareup.okio:okio:3.17.0")
+            force("com.squareup.okio:okio-jvm:3.17.0")
 
             // Apache Commons — uncontrolled recursion, DoS
             force("org.apache.commons:commons-lang3:3.18.0")
