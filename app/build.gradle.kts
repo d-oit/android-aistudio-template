@@ -61,13 +61,11 @@ spotless {
     kotlin {
         target("**/*.kt")
         targetExclude("**/build/**/*.kt")
-        ktlint("1.3.1")
-        trimTrailingWhitespace()
-        endWithNewline()
+        ktfmt().googleStyle()
     }
     kotlinGradle {
         target("**/*.gradle.kts")
-        ktlint("1.3.1")
+        ktfmt().googleStyle()
     }
 }
 
