@@ -37,6 +37,9 @@ jobs:
       - name: Make Harness Executable
         run: chmod +x harness.sh
 
+      - name: Auto-fix Formatting
+        run: ./harness.sh format
+
       - name: Run Quality Gate Pipeline
         run: ./harness.sh verify
         env:
