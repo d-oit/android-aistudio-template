@@ -1,204 +1,107 @@
 # Android AI Studio Template
 
-> A GitHub template for building **offline-first Android apps** powered by [Google AI Studio](https://aistudio.google.com) (Gemini API).
+A generic, production-ready Android project template for [aistudio.google.com](https://aistudio.google.com). Use it as a starting point for any new Android project or as a reference for an existing codebase — no Gemini AI integration bundled by default.
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github)](https://github.com/d-oit/android-aistudio-template/generate)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+## Features
 
----
+- **Kotlin** (JVM 17) + **Jetpack Compose** + **Material 3**
+- **Offline-first** architecture (Room + WorkManager + Repository pattern + MVVM)
+- **Manual constructor injection** (no Hilt annotations)
+- **Spotless + ktlint** code formatting enforced via CI
+- **Robolectric + Roborazzi** for fast JVM-only testing (no emulator required)
+- **GitHub Actions** CI/CD — lint, test, build, signed release
+- **`./harness.sh`** developer workflow script
+- **`.agents/skills/`** — full set of AI Studio agent skills ported from [d-oit/do-github-gist-ai-studio-android](https://github.com/d-oit/do-github-gist-ai-studio-android)
 
-## 🚀 Stack
+## Quick Start
 
-| Layer | Technology |
-|---|---|
-| Language | **Kotlin** |
-| UI | **Jetpack Compose** + Material 3 |
-| Local DB | **Room** (SQLite) |
-| Networking | **Retrofit** + OkHttp |
-| AI | **Gemini REST API** (via AI Studio key) + On-device fallback |
-| Background | **WorkManager** |
-| Security | Android Keystore + EncryptedSharedPreferences |
-| DI | Manual constructor injection |
-| Testing | JUnit 5 + Robolectric + Roborazzi |
-| Quality | Spotless + Detekt + Android Lint + JaCoCo |
-| CI/CD | GitHub Actions |
+### Use as a GitHub Template
 
----
+1. Click **"Use this template"** on GitHub.
+2. Clone your new repo.
+3. Copy `.env.example` to `.env` and fill in `GH_TOKEN` (if needed for `gh` CLI).
+4. Run `chmod +x harness.sh && ./harness.sh build`.
 
-## 📁 Project Structure
+### Reference in an Existing Project
 
-```text
-android-aistudio-template/
-├── .github/
-│   ├── workflows/
-│   │   ├── ci.yml              # Main CI workflow
-│   │   └── release.yml         # Release / APK artifact workflow
-│   └── dependabot.yml
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/example/template/
-│   │   │   │   ├── ai/         # Gemini API client + on-device fallback
-│   │   │   │   ├── core/       # Utilities: crypto, network, extensions
-│   │   │   │   ├── data/
-│   │   │   │   │   ├── local/  # Room DB, entities, DAOs
-│   │   │   │   │   ├── remote/ # Retrofit API clients
-│   │   │   │   │   ├── repository/ # Repository (single source of truth)
-│   │   │   │   │   └── sync/   # WorkManager sync workers
-│   │   │   │   ├── di/         # Dependency injection wiring
-│   │   │   │   └── ui/
-│   │   │   │       ├── components/ # Reusable Compose widgets
-│   │   │   │       ├── screens/    # Navigation screens
-│   │   │   │       ├── theme/      # Material 3 theme
-│   │   │   │       └── viewmodel/  # StateFlow ViewModels
-│   │   │   └── res/
-│   │   └── test/               # JVM / Robolectric tests
-│   └── build.gradle.kts
-├── .agents/                    # AI agent context files
-├── .plans/                     # Planning documents
-├── .env.example                # Environment variable reference
-├── .editorconfig
-├── .gitignore
-├── .codacy.yml
-├── build.gradle.kts
-├── settings.gradle.kts
-├── gradle.properties
-├── harness.sh                  # Unified developer workflow harness
-├── metadata.json               # Template metadata
-├── SPEC.md                     # Architecture specification
-├── TASK.md                     # Development checklist
-└── AGENTS.md                   # AI agent instructions
-```
+Copy the following into your project:
+- `.agents/` — agent skills for AI Studio
+- `AGENTS.md` — agent instructions
+- `harness.sh` — developer workflow harness
+- `.github/workflows/` — CI/CD pipelines
 
----
-
-## ⚡ Quick Start
-
-### 1. Use This Template
-
-Click **[Use this template](https://github.com/d-oit/android-aistudio-template/generate)** → create your repo → clone it.
-
-### 2. Prerequisites
-
-- JDK 17 (Zulu OpenJDK recommended)
-- Android Studio Meerkat (2024.3) or higher
-- Android SDK 35
-
-### 3. Configure Environment
-
-Copy `.env.example` to `.env` and fill in your keys:
-
-```properties
-# Required: GitHub Personal Access Token (if your app uses GitHub APIs)
-GITHUB_PAT=your_github_personal_access_token_here
-
-# Required: Google AI Studio API key (https://aistudio.google.com/app/apikey)
-GEMINI_API_KEY=your_gemini_api_key_here
-
-# Optional: Codacy project token for coverage upload
-CODACY_PROJECT_TOKEN=your_codacy_token_here
-```
-
-> ⚠️ **Never commit `.env` to version control.** It is listed in `.gitignore`.
-
-### 4. Add GitHub Secrets
-
-In your repository → **Settings → Secrets and variables → Actions**, add:
-
-| Secret | Description |
-|---|---|
-| `GEMINI_API_KEY` | Google AI Studio API key |
-| `GITHUB_PAT` | GitHub PAT (if using GitHub APIs) |
-| `CODACY_PROJECT_TOKEN` | Codacy token (optional) |
-| `KEYSTORE_FILE` | Base64-encoded release keystore (for release builds) |
-| `KEYSTORE_PASSWORD` | Keystore password |
-| `KEY_ALIAS` | Key alias |
-| `KEY_PASSWORD` | Key password |
-
-### 5. Run Locally
-
-Use the unified harness (mandatory, replaces raw `./gradlew`):
+## Developer Workflow
 
 ```bash
-# Full verification gate (run before every push)
-./harness.sh verify
-
-# Build debug APK
-./harness.sh build
+# Format & lint
+./harness.sh format
+./harness.sh lint
 
 # Run all tests
 ./harness.sh test
 
-# Lint check
-./harness.sh lint
+# Build debug APK
+./harness.sh build
 
-# Format check (Spotless)
-./harness.sh format-check
-
-# Generate coverage report
-./harness.sh coverage
-
-# See all commands
-./harness.sh help
+# Full verification gate (run before push)
+./harness.sh verify
 ```
 
----
+## GitHub Authentication
 
-## 🤖 Gemini AI Integration
+This template uses **`GH_TOKEN`** (not `GITHUB_PAT`) for all `gh` CLI operations.
+Add `GH_TOKEN` as a GitHub Actions secret and export it locally in your shell.
 
-This template ships with a **hybrid AI layer**:
-
-1. **On-device heuristics** — instant, always available offline
-2. **Gemini REST API** — cloud-based deep analysis via AI Studio key
-
-The app automatically falls back to on-device if `GEMINI_API_KEY` is absent or the network is unavailable. See `app/src/main/java/com/example/template/ai/` for the implementation.
-
-### Supported Models (configure in `ai/GeminiConfig.kt`)
-
-```kotlin
-object GeminiConfig {
-    const val MODEL_FLASH = "gemini-2.0-flash"        // Fast, cost-efficient
-    const val MODEL_PRO   = "gemini-2.5-pro"          // Deep reasoning
-    const val BASE_URL    = "https://generativelanguage.googleapis.com/v1beta/"
-}
+```bash
+export GH_TOKEN=ghp_...
 ```
 
----
+See `.agents/skills/gh/SKILL.md` for full `gh` CLI usage patterns.
 
-## 🛡️ Code Quality
+## Secrets
 
-- **Spotless** — Kotlin formatting enforcement
-- **Detekt** — static analysis
-- **Android Lint** — security, performance, accessibility
-- **JaCoCo** — test coverage reports
-- **Codacy** — continuous quality gate (optional)
-
-Reports output to `app/build/reports/`.
-
----
-
-## 🧪 Testing Strategy
-
-All tests run on the **JVM** (no emulator needed):
-
-- Unit tests: `./harness.sh unit`
-- Integration tests: `./harness.sh test` (Robolectric)
-- Screenshot tests: `gradle :app:verifyRoborazziDebug`
-- Record new screenshots: `gradle :app:recordRoborazziDebug`
-
----
-
-## 🔄 CI/CD
-
-The included GitHub Actions workflows:
-
-| Workflow | Trigger | Actions |
+| Secret | Required | Purpose |
 |---|---|---|
-| `ci.yml` | push / PR to `main` | Lint → Tests → Build Debug APK → Coverage |
-| `release.yml` | push tag `v*` | Build signed Release APK → GitHub Release |
+| `GH_TOKEN` | Optional | `gh` CLI GitHub operations |
+| `CODACY_PROJECT_TOKEN` | Optional | Coverage reporting |
+| `KEYSTORE_FILE` | Release only | Signed APK builds |
+| `KEYSTORE_PASSWORD` | Release only | Keystore password |
+| `KEY_ALIAS` | Release only | Key alias |
+| `KEY_PASSWORD` | Release only | Key password |
 
----
+## Architecture
 
-## 📄 License
+```
+UI (Compose) → ViewModel (StateFlow) → Repository → [Room | Retrofit | RemoteDataSource]
+```
+
+## Agent Skills
+
+All agent skills from `.agents/skills/` are available for AI Studio:
+
+| Skill | Purpose |
+|---|---|
+| `gh` | GitHub CLI patterns for agents |
+| `android-cli` | Android CLI tooling |
+| `adaptive` | Adaptive layouts |
+| `agp-9-upgrade` | AGP 9 migration |
+| `android-intent-security` | Intent security best practices |
+| `appfunctions` | App Functions integration |
+| `camerax` | CameraX usage |
+| `edge-to-edge` | Edge-to-edge display |
+| `engage-sdk-integration` | Engage SDK |
+| `migrate-xml-views-to-jetpack-compose` | XML → Compose migration |
+| `navigation-3` | Navigation 3 |
+| `perfetto-sql` | Perfetto SQL tracing |
+| `perfetto-trace-analysis` | Trace analysis |
+| `play-billing-library-version-upgrade` | Billing library upgrade |
+| `play-policy-insights` | Play policy |
+| `r8-analyzer` | R8 shrinking/analysis |
+| `styles` | Styling guidelines |
+| `testing-setup` | Test infrastructure |
+| `verified-email` | Verified email flows |
+| `wear-compose-m3` | Wear OS Compose M3 |
+
+## License
 
 MIT — see [LICENSE](LICENSE).

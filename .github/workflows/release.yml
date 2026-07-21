@@ -22,14 +22,16 @@ jobs:
           distribution: 'zulu'
           cache: gradle
 
+      - name: Grant harness execute permission
+        run: chmod +x harness.sh
+
       - name: Decode keystore
         run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > keystore/release.jks
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease
+        run: ./harness.sh build-release
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -39,3 +41,5 @@ jobs:
         with:
           files: app/build/outputs/apk/release/*.apk
           generate_release_notes: true
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

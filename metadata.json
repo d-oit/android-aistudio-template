@@ -1,12 +1,11 @@
 {
   "name": "android-aistudio-template",
-  "description": "Android GitHub Template for Google AI Studio (Gemini) — Kotlin, Jetpack Compose, offline-first, Gemini AI integration, CI/CD",
-  "version": "1.0.0",
+  "description": "Generic Android GitHub Template for aistudio.google.com — Kotlin, Jetpack Compose, offline-first, CI/CD. Use as a starting point for any new or existing Android codebase targeting AI Studio.",
+  "version": "2.0.0",
   "author": "d-oit",
-  "tags": ["android", "kotlin", "jetpack-compose", "gemini", "ai-studio", "template", "offline-first"],
+  "tags": ["android", "kotlin", "jetpack-compose", "ai-studio", "template", "offline-first", "material3", "compose"],
   "minSdk": 26,
   "targetSdk": 35,
   "kotlinVersion": "2.0.21",
-  "agpVersion": "8.7.3",
-  "geminiModels": ["gemini-2.0-flash", "gemini-2.5-pro"]
+  "agpVersion": "8.7.3"
 }

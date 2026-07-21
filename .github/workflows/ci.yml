@@ -28,8 +28,7 @@ jobs:
 
       - name: Write .env from secrets
         run: |
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
-          echo "GITHUB_PAT=${{ secrets.GITHUB_PAT }}" >> .env
+          echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> .env
 
       - name: Lint
         run: ./harness.sh lint
