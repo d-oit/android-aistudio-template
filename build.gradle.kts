@@ -15,8 +15,9 @@ plugins {
 // Uses Gradle dependency constraints (recognized by Dependabot).
 // ---------------------------------------------------------------------------
 subprojects {
-    dependencies {
-        constraints {
+    pluginManager.withPlugin("com.android.application") {
+        dependencies {
+            constraints {
             // Netty — HTTP/2 DoS, request smuggling, hostname verification bypass
             add("runtimeClasspath", "io.netty:netty-handler:4.1.135.Final") {
                 because("CVE-2026-50010 hostname verification bypass")
@@ -96,6 +97,7 @@ subprojects {
             // JDOM2 — XXE vulnerability
             add("runtimeClasspath", "org.jdom:jdom2:2.0.6.1") {
                 because("GHSA-2363-cqg2-863c XXE")
+            }
             }
         }
     }
