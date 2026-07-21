@@ -61,3 +61,19 @@ Is GEMINI_API_KEY set?
 | Integration | Robolectric | `app/src/test/` |
 | Screenshot | Roborazzi | `app/src/test/` |
 | Coverage | JaCoCo | CI + local harness |
+
+---
+
+## 7. Agent Skills
+
+AI coding agents working on this project can optionally install the [android/skills](https://github.com/android/skills) skill pack via:
+
+```bash
+gh skill install android/skills
+```
+
+See [gh skill install](https://cli.github.com/manual/gh_skill_install) for the full CLI reference. Any additional skills follow the same pattern:
+
+```bash
+gh skill install <owner>/<repo> [<skill-name>]
+```

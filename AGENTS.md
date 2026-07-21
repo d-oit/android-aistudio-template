@@ -105,7 +105,36 @@ Before declaring any change completed, execute:
 
 ---
 
-## 8. Adding a New Feature
+## 8. Agent Skills
+
+### Android Skills (Optional)
+
+The [android/skills](https://github.com/android/skills) repository provides curated agent skills covering Jetpack Compose patterns, Room, WorkManager, architecture guidelines, and more. These are **optional** but strongly recommended when working on this template.
+
+Install via `gh` CLI ([docs](https://cli.github.com/manual/gh_skill_install)):
+
+```bash
+# Install all Android skills
+gh skill install android/skills
+
+# Install a specific skill by name
+gh skill install android/skills <skill-name>
+```
+
+### Installing Other Skills
+
+Any additional skills (e.g., for CI, testing frameworks, or language tooling) can be installed the same way:
+
+```bash
+gh skill install <owner>/<repo>
+gh skill install <owner>/<repo> <skill-name>
+```
+
+Installed skills are placed under `.agents/skills/` and are automatically loaded by AI Studio agents at session start.
+
+---
+
+## 9. Adding a New Feature
 
 ```
 1. Define the use-case / domain logic in a dedicated UseCase class
