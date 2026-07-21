@@ -6,16 +6,16 @@ import com.example.template.ai.GeminiApiService
 import com.example.template.ai.GeminiConfig
 import com.example.template.ai.GeminiRequest
 import com.example.template.ai.GeminiResponse
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class AiRepositoryTest {
 
   @Test
   fun `analyze returns OnDevice when API key is blank`() =
-    runTest {
+    runBlocking {
       val repository =
         AiRepository(apiService = FakeGeminiApiService(), apiKey = "", model = GeminiConfig.MODEL_FLASH)
 
@@ -30,7 +30,7 @@ class AiRepositoryTest {
 
   @Test
   fun `analyze returns Cloud on successful API response`() =
-    runTest {
+    runBlocking {
       val fakeService = FakeGeminiApiService(responseText = "AI generated response")
       val repository =
         AiRepository(apiService = fakeService, apiKey = "valid-api-key", model = GeminiConfig.MODEL_FLASH)
@@ -43,7 +43,7 @@ class AiRepositoryTest {
 
   @Test
   fun `analyze falls back to OnDevice when API throws exception`() =
-    runTest {
+    runBlocking {
       val fakeService = FakeGeminiApiService(shouldThrow = true)
       val repository =
         AiRepository(apiService = fakeService, apiKey = "valid-api-key", model = GeminiConfig.MODEL_FLASH)
