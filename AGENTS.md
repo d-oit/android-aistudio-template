@@ -254,3 +254,14 @@ These files are template infrastructure — keep them as-is unless you have a sp
 - `.codacy.yml` — code quality config
 - `build.gradle.kts` dependency constraints block — security overrides
 - `.agents/skills/` — agent skill definitions
+
+### 10.8 AI Studio Wrapper Compliance
+
+AI Studio and similar external build environments **must** invoke builds via `./gradlew` (or `./harness.sh`), not the system-installed `gradle` command. The Gradle version specified in `gradle/wrapper/gradle-wrapper.properties` is the only version compatible with the project's AGP configuration. Invoking system `gradle` directly will use whatever version is installed in the container, which may be older than required, causing:
+
+```
+Failed to apply plugin 'com.android.internal.version-check'.
+  Minimum supported Gradle version is X.Y.Z. Current version is A.B.C.
+```
+
+If your environment's build tool (e.g. `compile_applet`) invokes `gradle` directly, configure it to use `./gradlew` instead or ensure the system Gradle version matches the project's wrapper version.

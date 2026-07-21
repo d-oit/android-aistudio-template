@@ -111,11 +111,11 @@ User Action → Composable Screen
 - **Consequences**: More boilerplate, but zero DI framework coupling. Every class is testable by passing mocks to constructors.
 - **Constraint**: Never use `@Inject`, `@HiltViewModel`, `@AndroidEntryPoint`, or `@HiltAndroidApp`.
 
-#### ADR-002: System Gradle for CI, Wrapper for Local
+#### ADR-002: Gradle Wrapper for CI and Local
 
-- **Context**: The `gradle-wrapper.jar` was historically corrupt (downloaded as text, not binary).
-- **Decision**: CI uses system-installed `gradle` command via `harness.sh`. The wrapper jar is committed for local developer use.
-- **Consequences**: CI is resilient to wrapper corruption. Local developers use `./gradlew` normally.
+- **Context**: The `gradle-wrapper.jar` was historically corrupt (downloaded as text, not binary). The wrapper has since been validated and restored.
+- **Decision**: Both CI and local development use `./gradlew` (the Gradle wrapper) via `harness.sh`. The wrapper jar is committed and validated by `harness.sh wrapper-check`.
+- **Consequences**: All environments use the same Gradle version specified in `gradle-wrapper.properties`. External environments (e.g. AI Studio) must also use `./gradlew` — invoking system `gradle` directly will cause version mismatches with AGP.
 
 #### ADR-003: ktfmt Google Style over ktlint
 
