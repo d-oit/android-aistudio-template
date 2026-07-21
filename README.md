@@ -19,7 +19,7 @@ A generic, production-ready Android project template for [aistudio.google.com](h
 
 1. Click **Use this template** on GitHub.
 2. Clone your new repo.
-3. Copy `.env.example` to `.env` and fill in `GH_TOKEN` if needed for `gh` CLI usage.
+3. Copy `.env.example` to `.env` and fill in `GH_TOKEN` if needed for `gh` CLI usage. Recommndation: use aistudio.google.com / github secrets instead of .env
 4. Run `chmod +x harness.sh && ./harness.sh build`.
 5. Optionally install or update project-local agent skills as described below.
 
