@@ -12,6 +12,8 @@
 - [x] Detekt + Spotless config
 - [x] `AGENTS.md` for AI coding assistants
 - [x] `DESIGN.md` machine-readable design specification (Stitch format)
+- [x] Dependabot security remediation (49 alerts — 2 critical, 10 high)
+- [x] Template onboarding for AI Studio agents (AGENTS.md §10, README.md, context.md)
 
 ## Phase 1 — Core App Scaffold
 - [ ] `MainActivity` with Compose `NavHost`

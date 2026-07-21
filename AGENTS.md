@@ -142,3 +142,115 @@ Installed skills are placed under `.agents/skills/` and are automatically loaded
 ```
 UI (Compose) → ViewModel (StateFlow) → Repository → [Room | Retrofit | RemoteDataSource]
 ```
+
+---
+
+## 10. Template Onboarding: First Steps for New Projects
+
+When a new codebase is created from this template (via GitHub "Use this template" or fork) and imported into AI Studio, agents **must** complete this checklist before implementing any features.
+
+### 10.1 Read the Specification Files
+
+```
+Priority order:
+1. AGENTS.md   — mandatory rules, constraints, verification loop
+2. DESIGN.md   — architecture, data model, ADRs, coding conventions
+3. TASK.md     — development progress, pending requirements
+4. SPEC.md     — entity relationships, sync state machine
+5. .agents/context.md — quick tech stack reference
+```
+
+### 10.2 Customize the Template Identity
+
+The template ships with placeholder values that **must** be changed:
+
+| What | Where | From | To |
+|---|---|---|---|
+| **Application ID** | `app/build.gradle.kts` line `applicationId` | `com.example.template` | Your reverse-domain ID |
+| **Namespace** | `app/build.gradle.kts` line `namespace` | `com.example.template` | Your namespace |
+| **Package directory** | `app/src/main/java/com/example/template/` | `com/example/template/` | Your package path |
+| **Test package** | `app/src/test/java/com/example/template/` | `com/example/template/` | Your package path |
+| **App name** | `app/src/main/res/values/strings.xml` | `AndroidAiStudioTemplate` | Your app name |
+| **Theme name** | `app/src/main/res/values/themes.xml` | `Theme.AndroidAiStudioTemplate` | `Theme.YourAppName` |
+| **AndroidManifest** | `app/src/main/AndroidManifest.xml` | `android:label="@string/app_name"` | Update after strings.xml |
+| **Project name** | `settings.gradle.kts` line `rootProject.name` | `AndroidAiStudioTemplate` | Your project name |
+| **Gemini key** | `.env` or CI secrets | `GEMINI_API_KEY=your_...` | Your actual API key |
+
+**Steps:**
+
+```bash
+# 1. Rename package directories
+mkdir -p app/src/main/java/com/your/app
+mkdir -p app/src/test/java/com/your/app
+mv app/src/main/java/com/example/template/* app/src/main/java/com/your/app/
+mv app/src/test/java/com/example/template/* app/src/test/java/com/your/app/
+rm -rf app/src/main/java/com/example
+rm -rf app/src/test/java/com/example
+
+# 2. Update package declarations in all .kt files
+find app/src -name '*.kt' -exec sed -i 's/com.example.template/com.your.app/g' {} +
+
+# 3. Update build.gradle.kts
+#    Change namespace and applicationId from com.example.template to com.your.app
+
+# 4. Update settings.gradle.kts
+#    Change rootProject.name to your project name
+
+# 5. Update strings.xml and themes.xml with your app name
+
+# 6. Update AndroidManifest.xml theme reference
+
+# 7. Verify with: ./harness.sh build
+```
+
+### 10.3 Configure Secrets
+
+```bash
+# Copy .env.example to .env
+cp .env.example .env
+
+# Add your Gemini API key (optional — on-device fallback works without it)
+# Edit .env and set GEMINI_API_KEY=your_actual_key
+
+# Add GH_TOKEN if using gh CLI locally
+# Edit .env and set GH_TOKEN=ghp_your_token
+```
+
+### 10.4 Run the Verification Loop
+
+```bash
+# Ensure harness.sh is executable
+chmod +x harness.sh
+
+# Full verification pipeline
+./harness.sh verify
+```
+
+### 10.5 Set Up Git
+
+```bash
+# If starting fresh from the template
+git remote set-url origin https://github.com/YOUR_ORG/YOUR_REPO.git
+git push -u origin main
+
+# Install pre-push hooks
+./harness.sh setup-hooks
+```
+
+### 10.6 Verify CI
+
+After pushing, verify that all GitHub Actions CI checks pass:
+- Use `gh pr checks` (with `GH_TOKEN`) to monitor CI status
+- All checks must pass before declaring any task done
+
+### 10.7 What NOT to Change
+
+These files are template infrastructure — keep them as-is unless you have a specific reason:
+
+- `.github/workflows/` — CI/CD pipelines
+- `.github/dependabot.yml` — dependency update config
+- `harness.sh` — developer workflow script
+- `config/detekt.yml` — static analysis config
+- `.codacy.yml` — code quality config
+- `build.gradle.kts` dependency constraints block — security overrides
+- `.agents/skills/` — agent skill definitions

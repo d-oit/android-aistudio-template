@@ -76,6 +76,45 @@ gh skill install OWNER/REPO SKILL_NAME --dir .
 
 Installed skills are stored in the project-local agent skill directory and can then be refreshed with `gh skill update --dir .`.
 
+## Using This Template in AI Studio
+
+This repository is designed to be imported into [Google AI Studio](https://aistudio.google.com/) as a starting point for Android app development with AI coding agents.
+
+### First Steps After Creating a New Project
+
+1. **Click "Use this template"** on GitHub to create your new repository.
+2. **Import your new repo** into AI Studio.
+3. **The agent will read `AGENTS.md`** — it contains the full onboarding checklist in §10.
+4. **Key customization** (the agent will guide you):
+   - Rename package: `com.example.template` → your package name
+   - Update app name in `strings.xml`
+   - Update project name in `settings.gradle.kts`
+   - Configure `.env` with your API keys
+   - Run `./harness.sh verify` to confirm everything works
+
+### What the Template Provides
+
+| Component | Description |
+|---|---|
+| `AGENTS.md` | **Agent instructions** — mandatory rules, constraints, onboarding checklist |
+| `DESIGN.md` | Machine-readable architecture spec (YAML frontmatter + structured sections) |
+| `TASK.md` | Development progress tracker — update as features are built |
+| `SPEC.md` | Entity relationships, sync state machine, styling guidelines |
+| `.agents/context.md` | Quick tech stack reference for agents |
+| `.agents/skills/` | Installed agent skills (gh CLI, skill management) |
+| `harness.sh` | Unified developer workflow script |
+| `.github/workflows/` | CI/CD pipelines (lint, test, build, release) |
+
+### Agent Workflow in AI Studio
+
+```
+Agent session starts
+  → Reads AGENTS.md, DESIGN.md, TASK.md, .agents/context.md
+  → Understands architecture, constraints, and current progress
+  → Implements features following the MVVM + Repository pattern
+  → Verifies with ./harness.sh verify before marking tasks done
+```
+
 ## Developer Workflow
 
 ```bash

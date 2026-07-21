@@ -448,12 +448,12 @@ com.example.template/
 | Category | Library | Version | Purpose |
 |---|---|---|---|
 | Language | Kotlin | 2.2.10 | Primary language |
-| Build | AGP | 9.1.1 | Android Gradle Plugin |
+| Build | AGP | 9.3.0 | Android Gradle Plugin |
 | UI | Compose BOM | 2025.05.00 | Jetpack Compose |
 | UI | Material 3 | 1.3.2 | Material Design |
 | Persistence | Room | 2.7.0 | Local database |
 | Network | Retrofit | 2.12.0 | REST client |
-| Network | OkHttp | 4.10.0 | HTTP client |
+| Network | OkHttp | 4.12.0 | HTTP client |
 | Background | WorkManager | 2.10.0 | Background sync |
 | Security | Security-Crypto | 1.1.0-alpha06 | Encrypted storage |
 | Coroutines | kotlinx-coroutines | 1.10.2 | Async operations |
