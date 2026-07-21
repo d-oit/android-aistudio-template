@@ -9,18 +9,20 @@ import com.example.template.BuildConfig
 class AiRepository(
     private val apiService: GeminiApiService = GeminiClient.service,
     private val apiKey: String = BuildConfig.GEMINI_API_KEY,
-    private val model: String = GeminiConfig.MODEL_FLASH
+    private val model: String = GeminiConfig.MODEL_FLASH,
 ) {
     suspend fun analyze(prompt: String): AiResult {
         if (apiKey.isBlank()) return onDeviceFallback(prompt)
         return try {
-            val response = apiService.generateContent(
-                model = model,
-                apiKey = apiKey,
-                request = GeminiRequest(
-                    contents = listOf(GeminiRequest.Content(parts = listOf(GeminiRequest.Part(prompt))))
+            val response =
+                apiService.generateContent(
+                    model = model,
+                    apiKey = apiKey,
+                    request =
+                        GeminiRequest(
+                            contents = listOf(GeminiRequest.Content(parts = listOf(GeminiRequest.Part(prompt)))),
+                        ),
                 )
-            )
             AiResult.Cloud(response.text() ?: "No response")
         } catch (e: Exception) {
             onDeviceFallback(prompt)
@@ -34,6 +36,11 @@ class AiRepository(
 }
 
 sealed class AiResult {
-    data class Cloud(val text: String) : AiResult()
-    data class OnDevice(val text: String) : AiResult()
+    data class Cloud(
+        val text: String,
+    ) : AiResult()
+
+    data class OnDevice(
+        val text: String,
+    ) : AiResult()
 }

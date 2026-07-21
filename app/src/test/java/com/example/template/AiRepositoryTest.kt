@@ -17,7 +17,7 @@ class AiRepositoryTest {
         val repository = AiRepository(
             apiService = FakeGeminiApiService(),
             apiKey = "",
-            model = GeminiConfig.MODEL_FLASH
+            model = GeminiConfig.MODEL_FLASH,
         )
 
         val result = repository.analyze("test prompt")
@@ -25,19 +25,19 @@ class AiRepositoryTest {
         assertTrue("Expected OnDevice result", result is AiResult.OnDevice)
         assertTrue(
             "Expected text to contain prompt",
-            (result as AiResult.OnDevice).text.contains("test prompt")
+            (result as AiResult.OnDevice).text.contains("test prompt"),
         )
     }
 
     @Test
     fun `analyze returns Cloud on successful API response`() {
         val fakeService = FakeGeminiApiService(
-            responseText = "AI generated response"
+            responseText = "AI generated response",
         )
         val repository = AiRepository(
             apiService = fakeService,
             apiKey = "valid-api-key",
-            model = GeminiConfig.MODEL_FLASH
+            model = GeminiConfig.MODEL_FLASH,
         )
 
         val result = repository.analyze("summarize this")
@@ -45,7 +45,7 @@ class AiRepositoryTest {
         assertTrue("Expected Cloud result", result is AiResult.Cloud)
         assertEquals(
             "AI generated response",
-            (result as AiResult.Cloud).text
+            (result as AiResult.Cloud).text,
         )
     }
 
@@ -55,7 +55,7 @@ class AiRepositoryTest {
         val repository = AiRepository(
             apiService = fakeService,
             apiKey = "valid-api-key",
-            model = GeminiConfig.MODEL_FLASH
+            model = GeminiConfig.MODEL_FLASH,
         )
 
         val result = repository.analyze("test prompt")
@@ -67,7 +67,7 @@ class AiRepositoryTest {
     fun `geminiConfig has correct base url`() {
         assertEquals(
             "https://generativelanguage.googleapis.com/v1beta/",
-            GeminiConfig.BASE_URL
+            GeminiConfig.BASE_URL,
         )
     }
 }
@@ -77,23 +77,23 @@ class AiRepositoryTest {
  */
 private class FakeGeminiApiService(
     private val responseText: String = "Default response",
-    private val shouldThrow: Boolean = false
+    private val shouldThrow: Boolean = false,
 ) : GeminiApiService {
 
     override suspend fun generateContent(
         model: String,
         apiKey: String,
-        request: GeminiRequest
+        request: GeminiRequest,
     ): GeminiResponse {
         if (shouldThrow) throw RuntimeException("Network error")
         return GeminiResponse(
             candidates = listOf(
                 GeminiResponse.Candidate(
                     content = GeminiResponse.Content(
-                        parts = listOf(GeminiResponse.Part(text = responseText))
-                    )
-                )
-            )
+                        parts = listOf(GeminiResponse.Part(text = responseText)),
+                    ),
+                ),
+            ),
         )
     }
 }
