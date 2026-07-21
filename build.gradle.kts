@@ -47,7 +47,7 @@ allprojects {
             force("org.bitbucket.b_c:jose4j:0.9.6")
 
             // Eclipse JGit — XXE vulnerability
-            force("org.eclipse.jgit:org.eclipse.jgit:6.10.1.202505221210-r")
+            force("org.eclipse.jgit:org.eclipse.jgit:7.7.0.202606012155-r")
 
             // protobuf-java — DoS
             force("com.google.protobuf:protobuf-java:3.25.5")
