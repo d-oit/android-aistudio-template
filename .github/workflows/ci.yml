@@ -41,7 +41,7 @@ jobs:
         run: ./harness.sh build
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug/*.apk
