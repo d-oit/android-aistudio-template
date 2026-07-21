@@ -109,31 +109,31 @@ dependencies {
     // ---------------------------------------------------------------------------
     constraints {
         // Netty — HTTP/2 DoS, request smuggling, hostname verification bypass
-        add("implementation", "io.netty:netty-handler:4.1.135.Final") {
+        add("implementation", "io.netty:netty-handler:4.2.16.Final") {
             because("CVE-2026-50010 hostname verification bypass")
         }
-        add("implementation", "io.netty:netty-codec-http:4.1.135.Final") {
+        add("implementation", "io.netty:netty-codec-http:4.2.16.Final") {
             because("CVE-2026-50020 control char bypass")
         }
-        add("implementation", "io.netty:netty-codec-http2:4.1.135.Final") {
+        add("implementation", "io.netty:netty-codec-http2:4.2.16.Final") {
             because("CVE-2026-50560 HTTP/2 reset attack")
         }
-        add("implementation", "io.netty:netty-handler-proxy:4.1.135.Final") {
+        add("implementation", "io.netty:netty-handler-proxy:4.2.16.Final") {
             because("CVE-2026-33870 header injection")
         }
-        add("implementation", "io.netty:netty-common:4.1.135.Final") {
+        add("implementation", "io.netty:netty-common:4.2.16.Final") {
             because("transitive pin for netty consistency")
         }
-        add("implementation", "io.netty:netty-buffer:4.1.135.Final") {
+        add("implementation", "io.netty:netty-buffer:4.2.16.Final") {
             because("transitive pin for netty consistency")
         }
-        add("implementation", "io.netty:netty-transport:4.1.135.Final") {
+        add("implementation", "io.netty:netty-transport:4.2.16.Final") {
             because("transitive pin for netty consistency")
         }
-        add("implementation", "io.netty:netty-codec:4.1.135.Final") {
+        add("implementation", "io.netty:netty-codec:4.2.16.Final") {
             because("transitive pin for netty consistency")
         }
-        add("implementation", "io.netty:netty-resolver:4.1.135.Final") {
+        add("implementation", "io.netty:netty-resolver:4.2.16.Final") {
             because("transitive pin for netty consistency")
         }
 
