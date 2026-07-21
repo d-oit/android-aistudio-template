@@ -40,8 +40,8 @@ die() {
 }
 
 run_gradle() {
-    print_info "Running: ./gradlew $*"
-    ./gradlew --stacktrace "$@"
+    print_info "Running: gradle $*"
+    gradle --stacktrace "$@"
 }
 
 log_step() {
