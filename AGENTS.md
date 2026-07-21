@@ -111,16 +111,6 @@ Before declaring any change completed, execute:
 
 The [android/skills](https://github.com/android/skills) repository provides curated agent skills covering Jetpack Compose patterns, Room, WorkManager, architecture guidelines, and more. These are **optional** but strongly recommended when working on this template.
 
-Install via `gh` CLI ([docs](https://cli.github.com/manual/gh_skill_install)):
-
-```bash
-# Install all Android skills
-gh skill install android/skills
-
-# Install a specific skill by name
-gh skill install android/skills <skill-name>
-```
-
 ### Installing Other Skills
 
 Any additional skills (e.g., for CI, testing frameworks, or language tooling) can be installed the same way:
