@@ -14,6 +14,7 @@
 - [x] `DESIGN.md` machine-readable design specification (Stitch format)
 - [x] Dependabot security remediation (49 alerts — 2 critical, 10 high)
 - [x] Template onboarding for AI Studio agents (AGENTS.md §10, README.md, context.md)
+- [x] Quickstart guide for customizing template into a real Android app (`QUICKSTART.md`)
 
 ## Phase 1 — Core App Scaffold
 - [ ] `MainActivity` with Compose `NavHost`
