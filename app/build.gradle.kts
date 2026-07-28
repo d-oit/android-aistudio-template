@@ -157,7 +157,7 @@ dependencies {
         add("implementation", "org.apache.commons:commons-lang3:3.18.0") {
             because("CVE-2025-48924 uncontrolled recursion")
         }
-        add("implementation", "org.apache.commons:commons-compress:1.26.0") {
+        add("implementation", "org.apache.commons:commons-compress:1.28.0") {
             because("CVE-2024-25710 infinite loop, CVE-2024-26308 OOM")
         }
         add("implementation", "commons-io:commons-io:2.14.0") {
