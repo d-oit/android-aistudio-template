@@ -146,10 +146,10 @@ dependencies {
         }
 
         // Okio — signed-to-unsigned (affects runtime APK via OkHttp)
-        add("implementation", "com.squareup.okio:okio:3.4.0") {
+        add("implementation", "com.squareup.okio:okio:3.18.0") {
             because("CVE-2023-3635 signed-to-unsigned conversion")
         }
-        add("implementation", "com.squareup.okio:okio-jvm:3.4.0") {
+        add("implementation", "com.squareup.okio:okio-jvm:3.18.0") {
             because("CVE-2023-3635 signed-to-unsigned conversion")
         }
 
