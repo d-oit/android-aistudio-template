@@ -180,7 +180,7 @@ dependencies {
         }
 
         // protobuf-java — DoS
-        add("implementation", "com.google.protobuf:protobuf-java:3.25.5") {
+        add("implementation", "com.google.protobuf:protobuf-java:4.36.2") {
             because("CVE-2024-7254 DoS")
         }
 
